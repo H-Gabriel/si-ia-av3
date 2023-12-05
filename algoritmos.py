@@ -42,6 +42,7 @@ class LRS:
         self.y_range = y_range
         self.minimize = minimize
         self.max_it = 1000
+        self.sigma = 0.2
 
     def run(self):
         x_opt = np.array([

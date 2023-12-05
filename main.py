@@ -27,24 +27,30 @@ def f8(x,y):
     return -(y+47)*np.sin(np.sqrt(np.absolute(x/2 + y + 47))) - x*np.sin(np.sqrt(np.absolute(x - y - 47)))
 
 '''
-x = np.linspace(-2,2, 250)
-y = np.linspace(-1,3, 250)
+x = np.linspace(0, np.pi, 500)
+y = np.linspace(0, np.pi, 500)
 xx, yy = np.meshgrid(x, y)
-y = f5(xx, yy)
+y = f7(xx, yy)
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 ax.plot_surface(xx,yy,y,rstride=10,cstride=10,alpha=0.6,cmap='jet')
-ax.set_xlim(-2, 2)
-ax.set_ylim(-1, 3)
-ax.set_zlim(500, 2500)
-ax.scatter(1, 1, f5(1, 1), s=40, color='k')
+ax.set_xlim(0, 3)
+ax.set_ylim(0, 3)
+ax.set_zlim(-1.75, 0)
+ax.scatter(2.2, 1.5, f7(2.2, 1.5), s=40, color='k')
 plt.show()
+'''
 
-tempera = SA(f=f5, minimize = True, x_range=[-2,2], y_range=[-1,3])
+'''
+lrs = LRS(f=f7, minimize=True, x_range=[0, np.pi], y_range=[0, np.pi])
+for _ in range(10):
+    lrs.run()
+tempera = SA(f=f7, minimize = True, x_range=[-2,2], y_range=[-1,3])
 for _ in range(10):
     tempera.run()
-'''
 
 hillclimb = Hillclimb(f=f5, minimize=True, x_range=[-2,2], y_range=[-1,3], size = 4)
 for _ in range(10):
     hillclimb.run()
+'''
+
