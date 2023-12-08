@@ -20,12 +20,12 @@ def calcular_aptidao(individuo):
     return 28 - pares_atacantes
 
 def recombinar(pai1, pai2):
-    p1 = np.random.randint(0,8)
-    p2 = np.random.randint(0,8)
+    p1 = np.random.randint(1,7)
+    p2 = np.random.randint(1,7)
     
     while p1 == p2:
-        p1 = np.random.randint(1,8)
-        p2 = np.random.randint(1,8)
+        p1 = np.random.randint(1,7)
+        p2 = np.random.randint(1,7)
 
     if p1 > p2:
         p1, p2 = p2, p1
@@ -80,7 +80,6 @@ def run():
         for i in range(0, n, 2):
             if np.random.random() <= p_recombinacao: # Apto a recombinar
                 filho1, filho2 = recombinar(S[i, :], S[i+1, :])
-                #if np.random.random() <= 0.01: # Chance de mutação atendida
                 filho1 = mutar(filho1)
                 filho2 = mutar(filho2)
 
