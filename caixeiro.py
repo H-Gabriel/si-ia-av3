@@ -93,7 +93,7 @@ pontos = np.delete(pontos, i_origem, axis=0) # Deleta a origem da "pool" de pont
 melhor_inaptidao = float('inf')
 
 melhor_caminho = None
-melhoria_enontrada = False
+melhoria_encontrada = False
 geracoes_sem_melhoria = 0
 
 # Definindo população inicial
@@ -103,7 +103,7 @@ for i in range(n):
     P[i] = individuo
 
 geracao_atual = 0
-while geracao_atual < geracao_max:
+while True:
     # Calcula a aptidão total da geração e salva a aptidão de cada individuo
     inaptidoes = [None] * n
     for i in range(n):
@@ -111,14 +111,14 @@ while geracao_atual < geracao_max:
         if (inaptidoes[i] < melhor_inaptidao):
             melhor_inaptidao = inaptidoes[i]
             melhor_caminho = P[i,:]
-            melhoria_enontrada = True
+            melhoria_encontrada = True
             geracoes_sem_melhoria = 0
             print("MELHORIA ENCONTRADA. GERAÇÃO:", geracao_atual, "APTIDÃO:", melhor_inaptidao)
 
-    if melhoria_enontrada == False:
+    if melhoria_encontrada == False:
         geracoes_sem_melhoria += 1
 
-    if (geracoes_sem_melhoria == 1000):
+    if (geracoes_sem_melhoria >= 1000):
         break
     
     melhoria_encontrada = False
